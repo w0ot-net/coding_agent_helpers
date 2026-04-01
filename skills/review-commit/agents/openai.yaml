@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Commit"
+  short_description: "Review a commit for bugs and risk"
+  default_prompt: "Use $review-commit to review this commit and report concrete findings with file references."

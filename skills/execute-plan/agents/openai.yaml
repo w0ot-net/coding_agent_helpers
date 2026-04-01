@@ -1,0 +1,4 @@
+interface:
+  display_name: "Execute Plan"
+  short_description: "Implement plan docs into code changes"
+  default_prompt: "Use $execute-plan to implement this plan from doc/plans, complete it, and list all execution commit hashes."
