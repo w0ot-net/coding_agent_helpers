@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Plan"
+  short_description: "Draft repo-aware implementation plans"
+  default_prompt: "Use $create-plan to draft a plan in doc/plans for this request."

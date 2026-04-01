@@ -1,0 +1,4 @@
+interface:
+  display_name: "Abandon Plan"
+  short_description: "Archive plans that should not be executed"
+  default_prompt: "Use $abandon-plan to retire this plan and move it to doc/abandoned_plans."
