@@ -22,10 +22,14 @@ cp -r skills/* ~/.claude/skills/
 | Skill | Type | Description |
 |-------|------|-------------|
 | [create-plan](skills/create-plan/) | Slash command | Draft implementation plans in `doc/plans/` with affected components |
+| [create-plan-v2](skills/create-plan-v2/) | Experimental slash command | Draft minimal plans with explicit scope and decomposition gates |
 | [review-plan](skills/review-plan/) | Slash command | Review plans for technical correctness, missing scope, and risk |
 | [execute-plan](skills/execute-plan/) | Slash command | Implement a plan from `doc/plans/` and finalize the plan record |
 | [abandon-plan](skills/abandon-plan/) | Slash command | Retire a plan to `doc/abandoned_plans/` with documented reasons |
 | [review-commit](skills/review-commit/) | Slash command | Risk-focused code review of a single git commit |
+
+Versioned experimental skills install alongside their stable counterpart and
+must be invoked explicitly, such as `$create-plan-v2`.
 
 ### Skill Structure
 

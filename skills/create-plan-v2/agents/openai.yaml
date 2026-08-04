@@ -1,0 +1,7 @@
+interface:
+  display_name: "Create Plan v2"
+  short_description: "Draft minimal, scope-controlled plans"
+  default_prompt: "Use $create-plan-v2 to draft the smallest coherent repository-aware implementation plan for this request."
+
+policy:
+  allow_implicit_invocation: false
