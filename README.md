@@ -25,6 +25,8 @@ cp -r skills/* ~/.claude/skills/
 | [create-plan-v2](skills/create-plan-v2/) | Experimental slash command | Draft minimal plans with explicit scope and decomposition gates |
 | [review-plan](skills/review-plan/) | Slash command | Review plans for technical correctness, missing scope, and risk |
 | [review-plan-v2](skills/review-plan-v2/) | Experimental slash command | Review scope and simplicity before exhaustive implementation detail |
+| [distill-plan](skills/distill-plan/) | Slash command | Iteratively review and revise a plan until no required findings remain |
+| [distill-plan-v2](skills/distill-plan-v2/) | Experimental slash command | Distill plans through scope-first review without scope inflation |
 | [execute-plan](skills/execute-plan/) | Slash command | Implement a plan from `doc/plans/` and finalize the plan record |
 | [abandon-plan](skills/abandon-plan/) | Slash command | Retire a plan to `doc/abandoned_plans/` with documented reasons |
 | [review-commit](skills/review-commit/) | Slash command | Risk-focused code review of a single git commit |
