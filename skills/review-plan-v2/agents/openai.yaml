@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review Plan v2"
+  short_description: "Review plan scope before implementation detail"
+  default_prompt: "Use $review-plan-v2 to review this plan for scope coherence, simplicity, correctness, and execution risk."
+
+policy:
+  allow_implicit_invocation: false
