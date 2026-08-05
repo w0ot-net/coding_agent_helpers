@@ -28,6 +28,7 @@ cp -r skills/* ~/.claude/skills/
 | [distill-plan](skills/distill-plan/) | Slash command | Iteratively review and revise a plan until no required findings remain |
 | [distill-plan-v2](skills/distill-plan-v2/) | Experimental slash command | Distill plans through scope-first review without scope inflation |
 | [execute-plan](skills/execute-plan/) | Slash command | Implement a plan from `doc/plans/` and finalize the plan record |
+| [execute-plan-v2](skills/execute-plan-v2/) | Experimental slash command | Preflight and execute only coherent, current implementation plans |
 | [abandon-plan](skills/abandon-plan/) | Slash command | Retire a plan to `doc/abandoned_plans/` with documented reasons |
 | [review-commit](skills/review-commit/) | Slash command | Risk-focused code review of a single git commit |
 

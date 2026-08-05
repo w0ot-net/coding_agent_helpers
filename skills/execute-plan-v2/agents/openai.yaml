@@ -1,0 +1,6 @@
+interface:
+  display_name: "Execute Plan v2"
+  short_description: "Execute only coherent, current plans"
+  default_prompt: "Use $execute-plan-v2 to preflight and implement this plan without expanding its accepted scope."
+policy:
+  allow_implicit_invocation: false
