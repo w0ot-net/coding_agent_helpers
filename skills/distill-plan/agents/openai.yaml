@@ -1,0 +1,4 @@
+interface:
+  display_name: "Distill Plan"
+  short_description: "Iterate review findings into a clean plan"
+  default_prompt: "Use $distill-plan to review this implementation plan with $review-plan, revise it, and repeat until no findings remain."

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Distill Plan v2"
+  short_description: "Distill plans without scope inflation"
+  default_prompt: "Use $distill-plan-v2 to refine this plan with $review-plan-v2 while preserving the smallest coherent scope."
+
+policy:
+  allow_implicit_invocation: false
