@@ -1,5 +1,7 @@
 # Plan: Modularize Reusable Agent Guidance
 
+*Distilled: 2026-08-15*
+
 ## Summary
 
 Turn the reusable software-development guidance into a concise three-file
