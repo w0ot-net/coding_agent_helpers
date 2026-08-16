@@ -1,27 +1,38 @@
-- Git workflow: always commit + push after code/doc changes; never `git add .`
-  or `git add -A`; stage explicit paths; commit only touched files; ignore
-  unrelated changes.
-- ASCII-only code/scripts (Unicode allowed in .md)
-- Libraries/mentions: never mention claude/anthropic/codex or use emojis.
-- Breaking changes: prefer clean breaks over compatibility shims; update all
-  call sites in the same change.
-- Invariants: always prefer invariants to fallbacks; be certain about behavior
-  and fail fast when expectations are violated.
-- avoid guesswork when we could be using concrete determinism
-- Reviews: answer your own questions when possible; otherwise propose best
-  options grounded in facts; ignore tests unless explicitly asked; ignore
-  doc/completed_plans and doc/abandoned_plans.
-- Plans: drafting a <plan>.md must list affected components; evaluating a plan
-  requires full code review of all affected components; executing a plan adds
-  execution notes and moves it to doc/completed_plans with YYYYMMDD_ prefix;
-  do not modify code under ./tests
-- don't write or modify test unless you are asked to do so
-- Coding: minimize code and complexity while maximizing performance,
-  readability, logging, and correctness; optimize for the least code and
-  complexity with the highest performance while maintaining readability,
-  logging, and correctness.
-- Avoid over-preserving API compatibility when a breaking change would be
-  cleaner/better long term; update call sites instead.
-- avoid unnecessary algorithmic complexity
-- avoid swallowing/hiding errors/exceptions
+# Software Development Agent Guidance
 
+## Required Workflows
+
+- Before modifying tracked files, read and follow
+  [GIT_WORKFLOW.md](GIT_WORKFLOW.md).
+- Before test, validation, benchmark, or retained-evidence work, read and
+  follow [VALIDATION.md](VALIDATION.md).
+
+## Authority and Compatibility
+
+- Start with the nearest authoritative documentation. Broaden inspection for
+  changes that cross architecture or ownership boundaries.
+- Treat completed and abandoned plans as historical context, not current
+  authority.
+- Preserve established code, API, configuration, protocol, and operator
+  behavior unless a concrete correctness, security, operational, performance,
+  or architectural reason requires change.
+- When a breaking change is accepted, update affected callers and
+  authoritative documentation together and state migration consequences. Do
+  not add speculative compatibility shims.
+
+## Engineering
+
+- Minimize code and complexity while preserving correctness, useful logging,
+  performance, and readability. Avoid redesign for novelty.
+- Prefer direct evidence, explicit invariants, and visible failures over
+  guesswork, fallback-heavy behavior, or swallowed errors.
+- Resolve review questions from code and authoritative documentation when
+  possible. Otherwise present evidence-grounded options and identify the
+  unresolved decision.
+
+## Source Conventions
+
+- Keep code and scripts ASCII unless existing content or the task requires
+  otherwise. Do not use emoji in project content.
+- Do not add gratuitous assistant, tool, or vendor attribution to project
+  content. Preserve technically relevant names.
