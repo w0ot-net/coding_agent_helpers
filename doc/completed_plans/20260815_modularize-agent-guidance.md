@@ -145,3 +145,19 @@ automatically; the core's required-read directives provide that behavior.
 - Relative links and documented copy instructions work in source and installed
   layouts.
 - No skills, tests, executable files, or SFB files change.
+
+## Execution Notes
+
+- Implemented the core routing and generic engineering guidance in
+  `agents_md/software_development_agents.md`, with Git and validation details
+  owned by new sibling documents.
+- Updated `README.md` to catalog the three-file bundle and preserve relative
+  links when the core is installed as `AGENTS.md` or `CLAUDE.md`.
+- Changed only the four planned documentation components. There were no
+  material deviations; skill wording and SFB policy remained excluded.
+- Validation passed: `git diff --check`; required link targets existed;
+  `wc -w agents_md/*.md` reported 485 total words; targeted `rg` checks found
+  no SFB-specific leakage; the staged path list contained exactly the four
+  planned files. No test suite was run because executable behavior did not
+  change.
+- Implementation commit: `fa00865`.
