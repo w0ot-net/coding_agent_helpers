@@ -2,10 +2,10 @@
 
 ## Authorization and Scope
 
-- Inspect existing tests when needed to understand contracts and impact. Do
-  not modify or run tests unless explicitly requested.
-- When validation is authorized, use the narrowest check that proves the
+- Inspect existing tests when needed to understand contracts and impact.
+- Run the narrowest focused tests or checks needed to verify an authorized
   change. Disclose relevant validation that was not run.
+- Do not modify tests unless explicitly requested.
 - Run aggregate or release suites only when explicitly requested.
 - Before validation expected to exceed ten minutes, tell the user what will
   run and provide an estimate.
