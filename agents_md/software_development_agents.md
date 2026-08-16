@@ -9,6 +9,8 @@
 
 ## Authority and Compatibility
 
+- The explicit task and nearest repository-specific instructions take
+  precedence over this reusable guidance.
 - Start with the nearest authoritative documentation. Broaden inspection for
   changes that cross architecture or ownership boundaries.
 - Treat completed and abandoned plans as historical context, not current
