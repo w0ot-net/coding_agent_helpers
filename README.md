@@ -47,10 +47,15 @@ skills/<skill-name>/
     <agent-name>.md   # Agent definition (for agent-type skills)
 ```
 
-## Agents MD
+## Agent Guidance
 
-Reusable CLAUDE.md fragments for consistent agent behavior across projects.
+Reusable guidance for consistent software-development agent behavior. Copy all
+three files into one directory. Use or rename
+`software_development_agents.md` as the project's `AGENTS.md` or `CLAUDE.md`,
+and retain the sibling filenames so its required-workflow links resolve.
 
-| File | Description |
-|------|-------------|
-| [software_development_agents.md](agents_md/software_development_agents.md) | Core coding conventions, git workflow, and review rules |
+| File | Responsibility |
+|------|----------------|
+| [software_development_agents.md](agents_md/software_development_agents.md) | Core guidance and workflow routing |
+| [GIT_WORKFLOW.md](agents_md/GIT_WORKFLOW.md) | Worktree safety, staging, commits, and pushing |
+| [VALIDATION.md](agents_md/VALIDATION.md) | Test authorization, validation scope, evidence, and artifacts |
