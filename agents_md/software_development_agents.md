@@ -2,6 +2,7 @@
 
 ## Required Workflows
 
+- GitHub Actions: never create or use GitHub Actions workflows.
 - Before modifying tracked files, read and follow
   [GIT_WORKFLOW.md](GIT_WORKFLOW.md).
 - Before test, validation, benchmark, or retained-evidence work, read and
