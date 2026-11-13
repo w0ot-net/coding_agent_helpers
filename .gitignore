@@ -1,0 +1,4 @@
+# Keep planning documents local, including after completion or abandonment.
+/doc/plans/
+/doc/completed_plans/
+/doc/abandoned_plans/
