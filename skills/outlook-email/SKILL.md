@@ -26,6 +26,17 @@ workflow.
 - If those boundaries are ambiguous, stop the edit and report the problem.
   Never replace the whole editor body to work around uncertain boundaries.
 
+## Writing style
+
+Write newly drafted subjects and body text in plain, natural business language.
+Avoid semicolons, em dashes, decorative Unicode punctuation, repeated ellipses,
+and stacked exclamation marks. Prefer short sentences with periods and commas.
+Rewrite an awkward sentence rather than replacing an em dash with a hyphen.
+Avoid canned openings, inflated language, and formulaic transitions.
+
+Apply this guidance to newly authored prose. Preserve text the user requires
+verbatim, technical syntax, URLs, saved signatures, and quoted thread content.
+
 ## Compose with native text entry
 
 Represent each paragraph as a string. Join paragraphs with `\n\n`; a single
@@ -97,8 +108,8 @@ Before sending:
 2. Compare the saved signature and quoted thread with their original values,
    including signature links and images. A correct body does not verify them.
 3. Verify recipients, subject, complete wording, and requested attachments in
-   the actual composed message. Leave the verified draft when only drafting
-   was requested.
+   the actual composed message. Review newly authored prose against the writing
+   style above. Leave the verified draft when only drafting was requested.
 
 If DOM inspection is unavailable, report that spacing remains unverified and
 leave the draft unsent. Do not substitute a text preview or visual assessment.
