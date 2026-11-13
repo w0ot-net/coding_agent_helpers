@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Outlook spacing fixtures</title>
+<style>
+  body { font-family: sans-serif; }
+  .fixture { font: 16px/normal Arial, sans-serif; width: 640px; margin: 24px 0; }
+  .fixture p, .fixture div { margin: 0; padding: 0; border: 0; }
+  .narrow { width: 180px; }
+</style>
+<h1>Outlook spacing fixtures</h1>
+<pre id="results">Running</pre>
+<main id="fixtures"></main>
+<script src="../scripts/check-spacing.js"></script>
+<script>
+  const blocks = [
+    "Hello,",
+    "Here is a deliberately long paragraph that wraps at a narrow width and remains readable with a single blank line before the next block.",
+    "Room A\nSecond floor",
+    "1. Review the draft.\nInclude your comments.",
+    "2. Confirm the next step.",
+    "Thank you,"
+  ];
+  const cases = [];
+  function fixture(name, expected, setup, expectedReason) {
+    const root = document.createElement("div");
+    root.className = "fixture";
+    root.dataset.case = name;
+    document.querySelector("#fixtures").append(root);
+    const { region = root, content = blocks } = setup(root) || {};
+    const before = root.outerHTML;
+    const observer = new MutationObserver(() => {});
+    observer.observe(root, { attributes: true, childList: true, subtree: true, characterData: true });
+    const result = checkOutlookSpacing(region, content);
+    const unchanged = root.outerHTML === before && observer.takeRecords().length === 0;
+    observer.disconnect();
+    cases.push({ name, passed: result.ok === expected && unchanged && (!expectedReason || result.reason === expectedReason), unchanged, result });
+  }
+  function native(root, content = blocks) {
+    content.forEach((block, index) => {
+      if (index) root.append(document.createElement("div"));
+      if (index) root.lastChild.append(document.createElement("br"));
+      block.split("\n").forEach(line => {
+        const node = document.createElement("div");
+        node.textContent = line;
+        root.append(node);
+      });
+    });
+  }
+  fixture("native wide, grouped lines and list", true, root => native(root));
+  fixture("browser native insertion in an existing empty line", true, root => {
+    root.contentEditable = "true";
+    root.innerHTML = "<div><br></div>";
+    root.focus();
+    const range = document.createRange();
+    range.setStart(root.firstChild, 0); range.collapse(true);
+    const selection = window.getSelection();
+    selection.removeAllRanges(); selection.addRange(range);
+    if (!document.execCommand("insertText", false, blocks.join("\n\n"))) throw new Error("Native insertion unavailable");
+    selection.removeAllRanges(); root.blur();
+  });
+  fixture("native narrow with wraps", true, root => { root.classList.add("narrow"); native(root); });
+  fixture("different native font size", true, root => { root.style.fontSize = "21px"; native(root); });
+  fixture("explicit fractional line height", true, root => { root.style.lineHeight = "23.5px"; native(root); });
+  fixture("BR grouped lines with inline spans", true, root => {
+    native(root, ["Hello,", "Room A\nSecond floor", "Thank you,"]);
+    root.children[2].innerHTML = "<span>Room A</span><br><span>Second floor</span>";
+    root.children[3].remove();
+    return { content: ["Hello,", "Room A\nSecond floor", "Thank you,"] };
+  });
+  fixture("sent view, sibling Range, signature and quote excluded", true, root => {
+    const content = ["Hello,", "Please review the draft.", "Thank you,"];
+    native(root, content);
+    const end = root.childNodes.length;
+    root.insertAdjacentHTML("beforeend", "<div><br></div><div>Sample signature</div><blockquote>Earlier message</blockquote>");
+    const region = document.createRange();
+    region.setStart(root, 0);
+    region.setEnd(root, end);
+    return { region, content };
+  });
+  fixture("collapsed zero-margin paragraphs", false, root => {
+    ["Hello,", "Please review the draft.", "Thank you,"].forEach(text => {
+      const p = document.createElement("p"); p.textContent = text; root.append(p);
+    });
+    return { content: ["Hello,", "Please review the draft.", "Thank you,"] };
+  }, "paragraph-gap");
+  fixture("doubled blank line", false, root => { native(root); root.children[1].after(root.children[1].cloneNode(true)); }, "paragraph-gap");
+  fixture("changed text", false, root => { native(root); root.firstChild.textContent = "Changed"; }, "text-mismatch");
+  fixture("missing final block", false, root => { native(root); root.lastChild.remove(); }, "missing-text");
+  fixture("extra blank within grouped lines", false, root => {
+    native(root, ["Room A\nSecond floor"]);
+    const empty = document.createElement("div"); empty.append(document.createElement("br"));
+    root.firstChild.after(empty);
+    return { content: ["Room A\nSecond floor"] };
+  }, "paragraph-gap");
+  fixture("hidden region", false, root => { native(root); root.style.display = "none"; }, "hidden-content");
+  fixture("hidden ancestor", false, root => {
+    root.style.opacity = "0";
+    const region = document.createElement("div"); root.append(region); native(region);
+    return { region };
+  }, "hidden-content");
+  fixture("hidden extra content", false, root => {
+    native(root); root.firstChild.insertAdjacentHTML("beforeend", '<span hidden>Extra</span>');
+  }, "hidden-content");
+  fixture("positioned viewer ancestor", true, root => {
+    root.style.position = "absolute";
+    const region = document.createElement("div"); root.append(region); native(region);
+    return { region };
+  });
+  fixture("unmeasurable block", false, root => { native(root); root.firstChild.style.height = "0"; }, "unmeasurable-block");
+  fixture("ambiguous mixed text and blocks", false, root => { native(root); root.prepend("Extra"); }, "mixed-block-and-text-content");
+  fixture("partial text Range", false, root => {
+    native(root); const region = document.createRange();
+    region.selectNodeContents(root.firstChild.firstChild); return { region };
+  }, "unsupported-region");
+  fixture("overlapping blocks", false, root => { native(root); root.children[2].style.marginTop = "-30px"; }, "paragraph-gap");
+  fixture("leading blank line", false, root => { native(root); root.prepend(root.children[1].cloneNode(true)); }, "leading-blank-line");
+  fixture("trailing blank line", false, root => { native(root); root.append(root.children[1].cloneNode(true)); }, "trailing-blank-line");
+  const summary = { passed: cases.every(test => test.passed), total: cases.length, cases };
+  document.querySelector("#results").textContent = JSON.stringify(summary, null, 2);
+  document.documentElement.dataset.passed = String(summary.passed);
+</script>
+</html>

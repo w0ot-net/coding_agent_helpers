@@ -31,6 +31,7 @@ cp -r skills/* ~/.claude/skills/
 | [execute-plan-v2](skills/execute-plan-v2/) | Experimental slash command | Preflight and execute only coherent, current implementation plans |
 | [abandon-plan](skills/abandon-plan/) | Slash command | Retire a plan to `doc/abandoned_plans/` with documented reasons |
 | [review-commit](skills/review-commit/) | Slash command | Risk-focused code review of a single git commit |
+| [outlook-email](skills/outlook-email/) | Skill | Compose Outlook web emails with preserved signatures and measured paragraph spacing |
 
 Versioned experimental skills install alongside their stable counterpart and
 must be invoked explicitly, such as `$create-plan-v2`.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Outlook Email"
+  short_description: "Compose Outlook emails with verified paragraph spacing"
+  default_prompt: "Use $outlook-email to compose this message in Outlook and verify its spacing and saved signature before any authorized send."
