@@ -31,7 +31,9 @@ workflow.
 Write newly drafted subjects and body text in plain, natural business language.
 Avoid semicolons, em dashes, decorative Unicode punctuation, repeated ellipses,
 and stacked exclamation marks. Prefer short sentences with periods and commas.
-Rewrite an awkward sentence rather than replacing an em dash with a hyphen.
+Avoid hyphens in newly authored prose unless essential for meaning or accuracy.
+Rephrase compound terms or the sentence to avoid them where possible, rather
+than simply deleting a required hyphen. Never substitute a hyphen for a dash.
 Avoid canned openings, inflated language, and formulaic transitions.
 
 Apply this guidance to newly authored prose. Preserve text the user requires
